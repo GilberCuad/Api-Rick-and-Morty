@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%); */
+    background-color: #121f3d;
+}
+
+.contenedorApp {
+    width: 100%;
+}
+
+.contenedorApp__tittle-h1 {
+    /* color: green; */
+    width: 100%;
+    text-align: center;
+    font-size: 72px;
+    background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(73, 231, 10));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Peralta', cursive;
+}

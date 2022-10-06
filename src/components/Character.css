@@ -1,0 +1,35 @@
+.Conten_character {
+    border-radius: 5px;
+    transition: all .6s ease-in;
+}
+
+.Content_Target h2 {
+    color: aliceblue;
+}
+
+.Conten_character:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+    background-color: rgb(11, 26, 40);
+}
+
+.Content_Target {
+    text-align: center;
+}
+.Content_Target h2 {
+    color: greenyellow;
+}
+
+.Img_Target {
+    height: 200px;
+    width: 200px;
+    border-radius: 8px;
+    border: 2px solid rgb(83, 222, 45);;
+}
+
+.alive {
+    color: green;
+}
+.nalive {
+    color: red;
+}

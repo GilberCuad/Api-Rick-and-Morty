@@ -1,0 +1,75 @@
+.Conten_princi {
+    width: 90%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    border-radius: 5px;
+}
+
+.conten_boton {
+    width: 25%;
+    display: flex;
+    padding-left: 45px;
+    flex-direction: row;
+    align-content: flex-end;
+    justify-content: flex-end;
+    margin: 20px;
+}
+
+.conten_boton button {
+    background-color: rgb(203, 133, 12);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: .3s ease all;
+
+
+    display: inline-flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    /*es para que respete los border redondeadosy que ingrese todo dentro 
+    del boton */
+
+
+}
+
+.btn_next span {
+    transition: .4s ease-in-out all;
+    position: absolute;
+    left: 40%;
+}
+
+.btn_next .icono {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    left: -40px;
+    transition: .3s ease-in-out;
+    opacity: 0;
+}
+
+.btn_next:hover {
+    background-color: rgb(83, 222, 45);
+}
+
+.btn_next:hover .icono {
+    left: calc(100% - 50px);
+    opacity: 1;
+}
+.btn_next svg {
+    width: 35px;
+    height: 35px;
+}
+.btn_next:hover span {
+    left: 20px;
+}
