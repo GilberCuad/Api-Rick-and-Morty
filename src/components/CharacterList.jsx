@@ -11,8 +11,8 @@ function NavPage({ page, setpage }) {
 
                 <button className='btn_back' onClick={() => {
                     if (page > 1) {
-                        setpage(page - 1)
-                    } 
+                        setpage(page - 1);
+                    }
                 }}>
                     <div class="icono">
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -23,11 +23,18 @@ function NavPage({ page, setpage }) {
                 </button>
 
                 <section className='conten__input'>
-                    <input type="search" className='conten__input-search' placeholder='Search you character' />
+                    <input name='search' type="search" className='conten__input-search'
+                     placeholder='Search you character'
+                     id='busqueda' />
                 </section>
 
                 <button className='btn_next' onClick={() => {
-                    setpage(page + 1)
+                    if (page < 43) {
+                        setpage(page + 1)
+                    } else {
+                        window.location.reload();
+                    }
+
                 }}>
                     <div class="icono">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
@@ -50,6 +57,7 @@ const CharacterList = () => {
     // guardaremos el valor de la pagina en un estado para irla cambiando con cada click del boton
     const [page, setpage] = useState(1)
     const [visible, setVisible] = useState(false);
+    const [searc, setSearc] = useState([]);
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
@@ -86,19 +94,21 @@ const CharacterList = () => {
                 {
                     characters.map(character => {
                         return (
-                            // <Character id={character.id} name={character.name} image={character.image} />
-                            <Character key={character.id} character_person={character} />
+                            <Character id={character.id} name={character.name} image={character.image} status={character.status}/>
+                            // <Character key={character.id} character_person={character} />
                         )
                     })
-                }
-
+                };
             </div>
+
             <button href="#inicio" className='buttonTop' onClick={scrollToTop}
+
                 style={{ display: visible ? "inline" : "none" }}>
-                {/* <FaArrowCircleUp onClick={scrollToTop} /> */}
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
                 </svg>
+
             </button>
         </div>
     );

@@ -24,12 +24,12 @@
     height: 200px;
     width: 200px;
     border-radius: 8px;
-    border: 2px solid rgb(83, 222, 45);;
+    border-bottom: 4px solid rgb(116, 222, 45);
 }
 
-.alive {
-    color: green;
-}
-.nalive {
-    color: red;
+.Img_Target1 {
+    height: 200px;
+    width: 200px;
+    border-radius: 8px;
+    border-bottom: 4px solid rgb(222, 45, 45);
 }
