@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Character from './Character'
 import './CharacterList.css'
 
-function NavPage({ page, setpage }) {
+function NavPage({ page, setpage, search }) {
     return (
         <header id='inicio'>
             <p className='page'>PAGE: {page}</p>
@@ -21,12 +21,6 @@ function NavPage({ page, setpage }) {
                     </div>
                     <span>Back</span>
                 </button>
-
-                <section className='conten__input'>
-                    <input name='search' type="search" className='conten__input-search'
-                     placeholder='Search you character'
-                     id='busqueda' />
-                </section>
 
                 <button className='btn_next' onClick={() => {
                     if (page < 43) {
@@ -57,7 +51,26 @@ const CharacterList = () => {
     // guardaremos el valor de la pagina en un estado para irla cambiando con cada click del boton
     const [page, setpage] = useState(1)
     const [visible, setVisible] = useState(false);
-    const [searc, setSearc] = useState([]);
+    // con esta linear traeremos lo llamado por el usuario
+    const [tableUsers, settableUsers] = useState([]);
+    // En la siguiente linea, controlaremos lo escrito por el usuario
+    const [search, setSearch] = useState("");
+    // const [tableusers, SetTableusers] = useState([]); la usaremos para filtrar informacion en ventana modal
+
+
+    const handleChange = e => { // capturamos lo escrito por el usuario
+        setSearch(e.target.value)
+        filter(e.target.value)
+    }
+
+    const filter = (termSearch) => {
+        let resultSearch = tableUsers.filter((elemento) => {
+            if (elemento.name.toString().toLowerCase().includes(termSearch.toLowerCase())) { // validamos los datos
+                return elemento
+            }
+        });
+        setCharacters(resultSearch);
+    }
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
@@ -80,6 +93,8 @@ const CharacterList = () => {
             const data = await response.json();
             setLoading(false)
             setCharacters(data.results); // para que solo me traiga results de toda la data, (GUARDAMOS EL ARREGLO EN UNA DE LAS VARIABLES QUE CONTIENE USESTATE())
+            settableUsers(data.results);
+            // SetTableusers(data.results);
         }
         fetchdata()
     }, [page]);
@@ -87,19 +102,28 @@ const CharacterList = () => {
     window.addEventListener('scroll', toggleVisible);
 
     return (
+
         <div>
-            <NavPage page={page} setpage={setpage} />
+            <NavPage page={page} setpage={setpage} search={setSearch} />
+
+            <section className='conten__input'>
+                <input name='search' type="search" value={search} className='conten__input-search'
+                    placeholder='Search you character'
+                    id='busqueda' onChange={handleChange} />
+            </section>
 
             <div className='Conten_princi'>
                 {
                     characters.map(character => {
                         return (
-                            <Character id={character.id} name={character.name} image={character.image} status={character.status}/>
+                            <Character id={character.id} name={character.name} image={character.image} status={character.status} />
                             // <Character key={character.id} character_person={character} />
                         )
                     })
                 };
             </div>
+
+
 
             <button href="#inicio" className='buttonTop' onClick={scrollToTop}
 
