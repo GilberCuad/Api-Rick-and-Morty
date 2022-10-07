@@ -3,21 +3,41 @@ import { useEffect, useState } from 'react';
 import Character from './Character'
 import './CharacterList.css'
 
-function NavPage() {
+function NavPage({ page, setpage }) {
     return (
-        <div className='conten_boton'>
-            <button className='btn_next'>Next
-                <div class="icono">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-                    </svg>
-                </div>
-            </button>
+        <header id='inicio'>
+            <p className='page'>PAGE: {page}</p>
+            <div className='conten_boton'>
 
-            {/* <div className='conten_input'>
-                <input className='input' type='text'></input>
-            </div> */}
-        </div>
+                <button className='btn_back' onClick={() => {
+                    if (page > 1) {
+                        setpage(page - 1)
+                    } 
+                }}>
+                    <div class="icono">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                        </svg>
+                    </div>
+                    <span>Back</span>
+                </button>
+
+                <section className='conten__input'>
+                    <input type="search" className='conten__input-search' placeholder='Search you character' />
+                </section>
+
+                <button className='btn_next' onClick={() => {
+                    setpage(page + 1)
+                }}>
+                    <div class="icono">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                        </svg>
+                    </div>
+                    <span>Next</span>
+                </button>
+            </div>
+        </header>
 
 
     )
@@ -27,20 +47,40 @@ const CharacterList = () => {
 
     const [characters, setCharacters] = useState([])
     const [loading, setLoading] = useState(true)
+    // guardaremos el valor de la pagina en un estado para irla cambiando con cada click del boton
+    const [page, setpage] = useState(1)
+    const [visible, setVisible] = useState(false);
+
+    const toggleVisible = () => {
+        const scrolled = document.documentElement.scrollTop;
+        if (scrolled > 300) {
+            setVisible(true);
+        } else if (scrolled <= 300) {
+            setVisible(false);
+        }
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+        });
+    };
 
     useEffect(() => {
         async function fetchdata() {
-            const response = await fetch('https://rickandmortyapi.com/api/character?page=1');
+            const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
             const data = await response.json();
             setLoading(false)
             setCharacters(data.results); // para que solo me traiga results de toda la data, (GUARDAMOS EL ARREGLO EN UNA DE LAS VARIABLES QUE CONTIENE USESTATE())
         }
         fetchdata()
-    }, []);
+    }, [page]);
+
+    window.addEventListener('scroll', toggleVisible);
 
     return (
         <div>
-            <NavPage />
+            <NavPage page={page} setpage={setpage} />
 
             <div className='Conten_princi'>
                 {
@@ -53,6 +93,13 @@ const CharacterList = () => {
                 }
 
             </div>
+            <button href="#inicio" className='buttonTop' onClick={scrollToTop}
+                style={{ display: visible ? "inline" : "none" }}>
+                {/* <FaArrowCircleUp onClick={scrollToTop} /> */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                </svg>
+            </button>
         </div>
     );
 };
