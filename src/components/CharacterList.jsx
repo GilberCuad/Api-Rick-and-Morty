@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import Windowmodal from './windowModal';
 import Character from './Character'
 import './CharacterList.css'
 
@@ -58,6 +59,9 @@ const CharacterList = () => {
     // const [tableusers, SetTableusers] = useState([]); la usaremos para filtrar informacion en ventana modal
 
 
+    // ventana modal
+    // const [estadoModal1, setestadoModal1] = useState(false);
+
     const handleChange = e => { // capturamos lo escrito por el usuario
         setSearch(e.target.value)
         filter(e.target.value)
@@ -104,6 +108,15 @@ const CharacterList = () => {
     return (
 
         <div>
+            {/* <Windowmodal 
+            estado = {estadoModal1}
+            cambiarEsrado={setestadoModal1}>
+                <Contenido>
+                    <h1>Ventana moda</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam reiciendis vel fuga voluptate corporis ipsum! Adipisci veritatis, possimus ducimus voluptatem deleniti quaerat ipsa quisquam autem. Incidunt architecto impedit similique provident.</p>
+                </Contenido>
+            </Windowmodal> */}
+
             <NavPage page={page} setpage={setpage} search={setSearch} />
 
             <section className='conten__input'>
@@ -116,7 +129,15 @@ const CharacterList = () => {
                 {
                     characters.map(character => {
                         return (
-                            <Character id={character.id} name={character.name} image={character.image} status={character.status} />
+                            <Character
+                             id={character.id} 
+                             name={character.name}
+                             image={character.image} 
+                             status={character.status}
+                             species={character.species}
+                             gender={character.gender}
+                             location={character.location.name}
+                             origin={character.origin.url}/>
                             // <Character key={character.id} character_person={character} />
                         )
                     })
@@ -141,3 +162,10 @@ const CharacterList = () => {
 export default CharacterList;
 
 //rsc
+
+// const Contenido = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   color: #FFFFFF;
+
+// `
