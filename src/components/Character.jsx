@@ -24,7 +24,7 @@ function Character({ id, name, image, status, species, gender, location, origin 
                         <p>Specie: {species}</p>
                         <p>Gender: {gender}</p>
                         <p>Location: {location}</p>
-                        <p>Origin: {origin}</p>
+                        <p>Origin: {origin.type}</p>
                     </div>
                 </Contenido>
             </Windowmodal>
@@ -57,5 +57,4 @@ const Contenido = styled.div`
   img {
     border-radius: 8px;
   }
-
 `

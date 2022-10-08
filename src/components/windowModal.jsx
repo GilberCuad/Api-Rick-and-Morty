@@ -1,6 +1,4 @@
 import React from 'react';
-import CharacterList from './CharacterList';
-import Character from './Character';
 import styled from 'styled-components'
 import '../components/modal.css'
 

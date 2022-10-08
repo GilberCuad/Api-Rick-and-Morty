@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Windowmodal from './windowModal';
 import Character from './Character'
 import './CharacterList.css'
 
@@ -98,7 +97,6 @@ const CharacterList = () => {
             setLoading(false)
             setCharacters(data.results); // para que solo me traiga results de toda la data, (GUARDAMOS EL ARREGLO EN UNA DE LAS VARIABLES QUE CONTIENE USESTATE())
             settableUsers(data.results);
-            // SetTableusers(data.results);
         }
         fetchdata()
     }, [page]);
@@ -108,14 +106,6 @@ const CharacterList = () => {
     return (
 
         <div>
-            {/* <Windowmodal 
-            estado = {estadoModal1}
-            cambiarEsrado={setestadoModal1}>
-                <Contenido>
-                    <h1>Ventana moda</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam reiciendis vel fuga voluptate corporis ipsum! Adipisci veritatis, possimus ducimus voluptatem deleniti quaerat ipsa quisquam autem. Incidunt architecto impedit similique provident.</p>
-                </Contenido>
-            </Windowmodal> */}
 
             <NavPage page={page} setpage={setpage} search={setSearch} />
 
@@ -160,12 +150,3 @@ const CharacterList = () => {
 };
 
 export default CharacterList;
-
-//rsc
-
-// const Contenido = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(2, 1fr);
-//   color: #FFFFFF;
-
-// `
