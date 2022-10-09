@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 import Character from '../character/Character'
 import './CharacterList.css'
 
-function NavPage({ page, setpage, search }) {
+function NavPage({ page, setpage }) {
     return (
         <header id='inicio'>
             <p className='page'>PAGE: {page}</p>
@@ -61,34 +61,34 @@ const CharacterList = () => {
     // ventana modal
     // const [estadoModal1, setestadoModal1] = useState(false);
 
-    const handleChange = e => { // capturamos lo escrito por el usuario
+    const handleChange = useCallback(e => { // capturamos lo escrito por el usuario
         setSearch(e.target.value)
         filter(e.target.value)
-    }
+    }, [e.target.value]);
 
-    const filter = (termSearch) => {
+    const filter = useCallback((termSearch) => {
         let resultSearch = tableUsers.filter((elemento) => {
             if (elemento.name.toString().toLowerCase().includes(termSearch.toLowerCase())) { // validamos los datos
                 return elemento
             }
         });
         setCharacters(resultSearch);
-    }
+    }, [resultSearch]);
 
-    const toggleVisible = () => {
+    const toggleVisible = useCallback(() => {
         const scrolled = document.documentElement.scrollTop;
         if (scrolled > 300) {
             setVisible(true);
         } else if (scrolled <= 300) {
             setVisible(false);
         }
-    };
+    }, [scrolled]);
 
-    const scrollToTop = () => {
+    const scrollToTop = useCallback(() => {
         window.scrollTo({
             top: 0,
         });
-    };
+    }, [window.scrollTo]);
 
     useEffect(() => {
         async function fetchdata() {

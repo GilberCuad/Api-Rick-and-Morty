@@ -1,6 +1,7 @@
 // import character from '../src/components/Character' // {} Alfonso
 import Windowmodal from '../windowsmodal/windowModal';
 import styled from 'styled-components'
+import React from 'react';
 import { useState } from 'react';
 import './Character.css'
 
@@ -45,7 +46,7 @@ function Character({ id, name, image, status, species, gender, location, origin 
     )
 }
 
-export default Character;
+export default React.memo(Character);
 
 const Contenido = styled.div`
   display: grid;
