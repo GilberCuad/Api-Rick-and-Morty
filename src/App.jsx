@@ -1,4 +1,4 @@
-import CharacterList from '../src/components/CharacterList'
+import CharacterList from '../src/components/CharacterList/CharacterList'
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
 </style>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import '../components/modal.css'
+import './modal.css'
 
 
 const windowModal = ({ children, estado, cambiarEsrado }) => {

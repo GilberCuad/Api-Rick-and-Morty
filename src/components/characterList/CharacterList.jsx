@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Character from './Character'
+import Character from '../character/Character'
 import './CharacterList.css'
 
 function NavPage({ page, setpage, search }) {
@@ -120,20 +120,19 @@ const CharacterList = () => {
                     characters.map(character => {
                         return (
                             <Character
-                             id={character.id} 
-                             name={character.name}
-                             image={character.image} 
-                             status={character.status}
-                             species={character.species}
-                             gender={character.gender}
-                             location={character.location.name}
-                             origin={character.origin.url}/>
+                                id={character.id}
+                                name={character.name}
+                                image={character.image}
+                                status={character.status}
+                                species={character.species}
+                                gender={character.gender}
+                                location={character.location.name}
+                                origin={character.origin.url} />
                             // <Character key={character.id} character_person={character} />
                         )
                     })
                 };
             </div>
-
 
 
             <button href="#inicio" className='buttonTop' onClick={scrollToTop}

@@ -1,5 +1,5 @@
 // import character from '../src/components/Character' // {} Alfonso
-import Windowmodal from './windowModal';
+import Windowmodal from '../windowsmodal/windowModal';
 import styled from 'styled-components'
 import { useState } from 'react';
 import './Character.css'
